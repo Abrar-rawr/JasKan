@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <title>JasKan Account Verification Test</title>
+</head>
+<body>
+  <script>
+    var params = new URLSearchParams(location.search);
+    var mode = params.get("mode") === "penyedia" ? "penyedia" : "pemesan";
+    var waiting = params.get("waiting") === "1";
+    var account = {
+      id: "account-verification-both-test",
+      name: "User123",
+      phone: "081234567890",
+      password: "test",
+      initialMode: mode
+    };
+    localStorage.setItem("jaskan_accounts", JSON.stringify([account]));
+    localStorage.setItem("jaskan_session", JSON.stringify({
+      accountId: account.id,
+      loginAt: new Date().toISOString()
+    }));
+    localStorage.setItem("jaskan_mode", mode);
+    localStorage.setItem("jaskan_profile_pemesan", JSON.stringify({
+      name: "User123",
+      phone: "081234567890",
+      address: "Gerbang Fakultas Teknik",
+      status: "Belum Diverifikasi"
+    }));
+    localStorage.setItem("jaskan_profile_penyedia", JSON.stringify({
+      name: "User123",
+      phone: "081234567890",
+      primaryRoute: "Kampus ULM ke Banjarbaru",
+      status: "Belum Diverifikasi"
+    }));
+    localStorage.removeItem("jaskan_verification_pemesan");
+    localStorage.removeItem("jaskan_verification_penyedia");
+    if (waiting) {
+      localStorage.setItem("jaskan_verification_" + mode, JSON.stringify({
+        status: "Menunggu Verifikasi",
+        documents: mode === "pemesan"
+          ? { identityName: "identitas-pemesan.jpg", vehicleName: "" }
+          : { identityName: "identitas-penyedia.jpg", vehicleName: "kendaraan.jpg" },
+        submittedAt: new Date().toISOString(),
+        dueAt: Date.now() + 1500,
+        completedAt: ""
+      }));
+    }
+    location.replace("index.html#profile");
+  </script>
+</body>
+</html>
