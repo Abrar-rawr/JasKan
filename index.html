@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beranda - JasKan Pemesan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="mode-pemesan no-bottom-nav" data-mode="pemesan" data-root="">
+    <nav class="navbar navbar-expand-md sticky-top app-navbar" aria-label="Navigasi utama">
+      <div class="container">
+        <button class="navbar-brand d-flex align-items-center gap-2 fw-bold border-0 bg-transparent" data-section="home">
+          <img class="brand-logo" data-logo src="Asset/logobiru.png" alt="Logo JasKan">
+          <span>JasKan</span>
+        </button>
+        <span class="badge mode-badge ms-auto me-2 d-md-none" data-mode-label>Mode Pemesan</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Buka navigasi">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav ms-auto align-items-md-center gap-md-1">
+            <li class="nav-item"><button class="nav-link" data-section="home">Beranda</button></li>
+            <li class="nav-item"><button class="nav-link" data-section="activity">Aktivitas</button></li>
+            <li class="nav-item"><button class="nav-link" data-section="inbox">Pesan</button></li>
+            <li class="nav-item"><button class="nav-link" data-section="form" data-form-label>Titip Barang</button></li>
+            <li class="nav-item"><button class="nav-link" data-section="profile" data-profile-switch title="Ketuk dua kali untuk ganti mode">Profil</button></li>
+            <li class="nav-item ms-md-2"><span class="badge mode-badge" data-mode-label>Mode Pemesan</span></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="app" class="page-shell"></main>
+
+    <script src="jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
