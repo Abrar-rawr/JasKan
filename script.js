@@ -30,13 +30,13 @@
       type: "DANA",
       name: "JasKan Payment",
       number: "0812-3456-7890",
-      accountName: "JasKan Demo"
+      accountName: "JasKan Payment"
     },
     "Transfer Bank": {
       type: "Bank",
       bank: "BCA",
       number: "1234567890",
-      accountName: "JasKan Demo"
+      accountName: "JasKan Payment"
     },
     "Bayar di Tempat / Tunai": {
       type: "Tunai",
@@ -655,11 +655,11 @@
         '<div class="modal-footer justify-content-center"><button type="button" class="btn btn-theme px-4" data-bs-dismiss="modal">Tutup</button></div></div></div></div></div>' +
         '<div class="col-12 dana-payment-panel payment-method-panel d-none"><div class="payment-destination-card"><span class="payment-destination-icon"><i class="bi bi-phone"></i></span>' +
         '<div class="payment-destination-heading"><span class="profile-eyebrow">E-Wallet / DANA</span><h3 class="h5 fw-bold mb-1">JasKan Payment</h3><p class="text-muted-app mb-0">Transfer ke nomor DANA berikut, lalu upload bukti bayar.</p></div>' +
-        '<dl class="payment-destination-details"><div><dt>Nama</dt><dd>JasKan Payment</dd></div><div><dt>Nomor DANA</dt><dd>0812-3456-7890</dd></div><div><dt>Atas Nama</dt><dd>JasKan Demo</dd></div></dl>' +
+        '<dl class="payment-destination-details"><div><dt>Nama</dt><dd>JasKan Payment</dd></div><div><dt>Nomor DANA</dt><dd>0812-3456-7890</dd></div><div><dt>Atas Nama</dt><dd>JasKan Payment</dd></div></dl>' +
         '<button class="btn btn-outline-theme copy-payment-number" type="button" data-copy-value="081234567890" data-copy-label="Nomor DANA">Salin Nomor DANA</button></div></div>' +
         '<div class="col-12 bank-payment-panel payment-method-panel d-none"><div class="payment-destination-card"><span class="payment-destination-icon"><i class="bi bi-bank"></i></span>' +
         '<div class="payment-destination-heading"><span class="profile-eyebrow">Transfer Bank</span><h3 class="h5 fw-bold mb-1">BCA</h3><p class="text-muted-app mb-0">Transfer ke rekening berikut, lalu upload bukti bayar.</p></div>' +
-        '<dl class="payment-destination-details"><div><dt>Nomor Rekening</dt><dd>1234567890</dd></div><div><dt>Atas Nama</dt><dd>JasKan Demo</dd></div></dl>' +
+        '<dl class="payment-destination-details"><div><dt>Nomor Rekening</dt><dd>1234567890</dd></div><div><dt>Atas Nama</dt><dd>JasKan Payment</dd></div></dl>' +
         '<button class="btn btn-outline-theme copy-payment-number" type="button" data-copy-value="1234567890" data-copy-label="Nomor rekening">Salin Nomor Rekening</button></div></div>' +
         '<div class="col-12 cash-payment-panel payment-method-panel d-none"><div class="payment-destination-card payment-cash-card"><span class="payment-destination-icon"><i class="bi bi-cash-coin"></i></span>' +
         '<div><span class="profile-eyebrow">Bayar di Tempat</span><p class="fw-bold mb-0">Pembayaran dilakukan saat barang diterima.</p></div></div></div>' +
@@ -1660,12 +1660,12 @@
   function renderPaymentDestinationSummary(method, destination) {
     if (method === "E-Wallet / DANA") {
       return '<div class="payment-destination-summary mt-2"><i class="bi bi-phone"></i><span><small>DANA</small><strong>' +
-        escapeHtml(destination.number || "0812-3456-7890") + ' · ' + escapeHtml(destination.accountName || "JasKan Demo") + "</strong></span></div>";
+        escapeHtml(destination.number || "0812-3456-7890") + ' · ' + escapeHtml(destination.accountName || "JasKan Payment") + "</strong></span></div>";
     }
     if (method === "Transfer Bank") {
       return '<div class="payment-destination-summary mt-2"><i class="bi bi-bank"></i><span><small>' +
         escapeHtml(destination.bank || "BCA") + '</small><strong>' + escapeHtml(destination.number || "1234567890") + " · " +
-        escapeHtml(destination.accountName || "JasKan Demo") + "</strong></span></div>";
+        escapeHtml(destination.accountName || "JasKan Payment") + "</strong></span></div>";
     }
     if (method === "QRIS") {
       return '<div class="payment-destination-summary mt-2"><i class="bi bi-qr-code"></i><span><small>Tujuan Pembayaran</small><strong>QRIS JasKan</strong></span></div>';
