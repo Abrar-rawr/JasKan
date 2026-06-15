@@ -7,6 +7,7 @@
   var MESSAGES_STORAGE_KEY = "jaskan_messages";
   var ACCOUNTS_STORAGE_KEY = "jaskan_accounts";
   var SESSION_STORAGE_KEY = "jaskan_session";
+  var LAST_ACCOUNT_PHONE_KEY = "jaskan_last_account_phone";
   var INDONESIA_TIME_ZONE = "Asia/Makassar";
   var INDONESIA_TIME_LABEL = "WITA";
   var currentMode = getStoredMode();
@@ -196,6 +197,7 @@
       accountId: account.id,
       loginAt: new Date().toISOString()
     }));
+    localStorage.setItem(LAST_ACCOUNT_PHONE_KEY, account.phone);
   }
 
   function renderAuth(activeTab, message, type) {
@@ -206,8 +208,9 @@
     var alert = message
       ? '<div class="alert alert-' + (type || "success") + ' py-2 px-3 small" role="alert">' + escapeHtml(message) + "</div>"
       : "";
+    var lastAccountPhone = normalizePhone(localStorage.getItem(LAST_ACCOUNT_PHONE_KEY));
     var loginForm = '<form id="login-form" class="auth-form" novalidate><div class="mb-3"><label for="login-phone" class="form-label fw-bold">Nomor HP</label>' +
-      '<input id="login-phone" class="form-control" type="tel" placeholder="Contoh: 081234567890"></div>' +
+      '<input id="login-phone" class="form-control" type="tel" value="' + escapeHtml(lastAccountPhone) + '" placeholder="Contoh: 081234567890" autocomplete="username"></div>' +
       '<div class="mb-4"><label for="login-password" class="form-label fw-bold">Password</label><input id="login-password" class="form-control" type="password" placeholder="Masukkan password"></div>' +
       '<button class="btn btn-theme btn-lg w-100" type="submit">Masuk ke JasKan</button></form>';
     var registerForm = '<form id="register-form" class="auth-form" novalidate><div class="mb-3"><label for="register-name" class="form-label fw-bold">Nama lengkap</label>' +
@@ -291,10 +294,14 @@
   }
 
   function logout() {
+    var account = getCurrentAccount();
+    if (account && account.phone) {
+      localStorage.setItem(LAST_ACCOUNT_PHONE_KEY, account.phone);
+    }
     localStorage.removeItem(SESSION_STORAGE_KEY);
     selectedRouteId = "";
     selectedChatOrderId = "";
-    renderAuth("login", "Kamu telah keluar dari akun.", "success");
+    renderAuth("login", "Kamu telah keluar. Akun tetap tersimpan dan dapat digunakan kembali.", "success");
   }
 
   function normalizePhone(value) {
@@ -1385,6 +1392,9 @@
     }
     account[key] = value;
     saveAccounts(accounts);
+    if (key === "phone") {
+      localStorage.setItem(LAST_ACCOUNT_PHONE_KEY, value);
+    }
     ["pemesan", "penyedia"].forEach(function (mode) {
       var storageKey = PROFILE_STORAGE_PREFIX + mode;
       var profile = {};
